@@ -1,0 +1,77 @@
+volumes:
+  app:
+  db:
+  cache:
+
+services:
+  app:
+    build: &dockerfile_build
+      context: .
+      args:
+        # UID and GID must be set as environment variables on the host machine
+        USER_ID: $DOCKER_USER_ID
+        GROUP_ID: $DOCKER_GROUP_ID
+    ports:
+      - ${DOCKER_HTTP_PORT}:8080
+      - ${DOCKER_HTTPS_PORT}:8443
+    volumes: &volume_app
+      - .:/var/www/html
+    restart: unless-stopped
+
+  db:
+    # running container only environment local, Ex: production, stage, local
+    profiles:
+      - local
+    init: true
+    image: mysql:8.4
+    command: --mysql-native-password=ON
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+      MYSQL_DATABASE: ${DB_DATABASE}
+      MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+    ports:
+      - ${DOCKER_DB_PORT}:3306
+    volumes:
+      - db:/var/lib/mysql
+    restart: unless-stopped
+
+  cache:
+    init: true
+    image: redis:alpine
+    ports:
+      - ${DOCKER_CACHE_PORT}:6379
+    command: "redis-server --appendonly yes --requirepass ${REDIS_PASSWORD}"
+    volumes:
+      - cache:/data
+    restart: unless-stopped
+    healthcheck:
+      test: [ "CMD-SHELL", "redis-cli ping | grep PONG" ]
+      start_period: 15s
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  horizon:
+    build: *dockerfile_build
+    volumes: *volume_app
+    environment:
+      PHP_POOL_NAME: horizon
+    command: ["php", "/var/www/html/artisan", "horizon"]
+    stop_signal: SIGTERM # Set this for graceful shutdown if you're using fpm-apache or fpm-nginx
+    healthcheck:
+      # This is our native healthcheck script for Horizon
+      test: ["CMD", "healthcheck-horizon"]
+      start_period: 10s
+    restart: unless-stopped
+
+  schedule:
+    build: *dockerfile_build
+    volumes: *volume_app
+    environment:
+      PHP_POOL_NAME: horizon
+    command: ["php", "/var/www/html/artisan", "schedule:work"]
+    restart: unless-stopped
+
+networks:
+  app-bridge:
+    driver: bridge
