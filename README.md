@@ -104,7 +104,6 @@ Rotas:
 Outros exemplos possíveis: 
  - Encoder de videos
  - Informações de asssinaturas, notas fiscais, notificações usuários, etc ...
-
     
     Comandos - Criado um command para simulação da categoria criada 
 
