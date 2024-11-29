@@ -1,4 +1,14 @@
-atlas_overview_2024
+Atlas Tecnologies 2024
+
+Microservice de Catalogo de videos - básico para apresentação
+
+O Objetivo foi pegar as partes descritas na vaga para exemplificar um caso de uso simples, podendo abordar vários cenários.
+
+Com TDD e Laravel(Camada de Infraestrutura)
+Mensageria: 
+    - RabbitMQ Simulando envio e recebimento de mensagem de uma categoria criada
+
+Docker para containerização das aplicações no desenvolvimento
 
 Clone Repositório:
 ```
@@ -6,13 +16,6 @@ Visão geral:
 git clone git@github.com:raphaelgmoraes/atlas_overview_2024.git
 
 Aplicação - Catálogo de video: Pasta: microservice-catalog-video
-
-```
-Implementar uma aplicação básica que para criar uma categoria de vídeos.
-
-TDD, Laravel(Camada de Infraestrutura), Mensageria(RabbitMQ e Kafka) e Docker
-
-
 ```
 Docker version 27.3.1, build ce12230
 ```
@@ -40,8 +43,6 @@ https://docs.mockery.io/en/latest/getting_started/installation.html
 Subir a aplicação:
 
 ```
-Acessar a pasta: microservice-catalog-video e seguir com os passos.
-
 docker compose up -d
 
     * Sugestão: acessar sem o **-d** para acompanhar os logs dos containers e sua progressão.
@@ -133,17 +134,21 @@ RabbitMQ
 A idéia é simular um processo de conversão de vídeos, reduzindo resursos do sistema.
 Informar que a categoria foi criada e tormar ações sobre.
 
-***Em andamento
-
 Outros exemplos possíveis: 
  - Encoder videos
  - Processamento reviews
  - Informações de asssinaturas, notas fiscais, notificações usuários, etc ...
 
+Comandos - Criado um command para simulação da categoria criada 
+
+Porducer: docker compose exec app php artisan app:rabbitmq-producer
+Consumer: docker compose exec app php artisan app:rabbitmq-consumer
+
 Reference:
 https://github.com/php-amqplib/php-amqplib
 https://www.rabbitmq.com/tutorials/tutorial-one-php
 Simulator: https://tryrabbitmq.com/
+
 
 Payload- categoria criada:
 {"app":"rabbitmq","info":"CategoryCreatedEvent","data":{"id":"f8a97443-9aaa-4449-89c2-fd2cae4d091e","name":"category_ut","description":"Quos libero velit voluptatibus atque quo consequatur harum quia ut eveniet.","active":true,"updated_at":"2024-11-29T14:02:44.000000Z","created_at":"2024-11-29T14:02:44.000000Z"}}
