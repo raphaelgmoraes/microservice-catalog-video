@@ -11,47 +11,33 @@ Mensageria:
 Docker para containerização das aplicações no desenvolvimento
 
 Clone Repositório:
-```
+
 Visão geral:
-git clone git@github.com:raphaelgmoraes/atlas_overview_2024.git
+    
+    git clone git@github.com:raphaelgmoraes/atlas_overview_2024.git
 
 Aplicação - Catálogo de video: Pasta: microservice-catalog-video
-```
-Docker version 27.3.1, build ce12230
-```
-```
-Docker Compose version v2.29.7
-```
-```
-Dockerfile >> Container PHP + nginx: serversideup/php:8.3-fpm-nginx
-Link: https://hub.docker.com/r/serversideup/php/tags?name=8.4-fpm&page=1&ordering=-name
-```
-```
-PHP Version: 8.3.14
-```
+    
+    Docker version 27.3.1, build ce12230
+    Docker Compose version v2.29.7
+    Dockerfile >> Container PHP + nginx: serversideup/php:8.3-fpm-nginx
+    Link: https://hub.docker.com/r/serversideup/php/tags?name=8.4-fpm&page=1&ordering=-name
 
-```
-PHP unit - v:11.4
-Link: https://docs.phpunit.de/en/11.4/
-```
+    PHP Version: 8.3.14
+    PHP unit - v:11.4
+    Link: https://docs.phpunit.de/en/11.4/
 
-```
-Reference Mockery:
-https://docs.mockery.io/en/latest/getting_started/installation.html
-```
+    Referência Mockery:
+    https://docs.mockery.io/en/latest/getting_started/installation.html
 
-```
 Subir a aplicação:
 
-```
-docker compose up -d
-Sugestão: acessar sem o **-d** para acompanhar os logs dos containers e sua progressão.
-```
+    docker compose up -d
+    Sugestão: acessar sem o **-d** para acompanhar os logs dos containers e sua progressão.
 
 Testes:
 
     docker compose exec app php artisan make:test caminho\\nomeDoTesteUnitTest
- 
  
 Radar os testes:
     
