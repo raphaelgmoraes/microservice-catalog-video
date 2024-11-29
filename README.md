@@ -102,8 +102,7 @@ Rotas:
     Informar que a categoria foi criada e tormar ações sobre.
 
 Outros exemplos possíveis: 
- - Encoder videos
- - Processamento reviews
+ - Encoder de videos
  - Informações de asssinaturas, notas fiscais, notificações usuários, etc ...
 
     
