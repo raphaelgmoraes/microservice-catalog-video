@@ -14,7 +14,7 @@ Clone Repositório:
 
 Visão geral:
     
-    git clone git@github.com:raphaelgmoraes/atlas_overview_2024.git
+    git clone git@github.com:raphaelgmoraes/microservice-catalog-video.git
 
 Aplicação - Catálogo de video: Pasta: microservice-catalog-video
     
