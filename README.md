@@ -111,8 +111,10 @@ Outros exemplos possíveis:
 
     Producer: docker compose exec app php artisan app:rabbitmq-producer
     Consumer: docker compose exec app php artisan app:rabbitmq-consumer
+
         Payload- categoria criada:
-        {"app":"rabbitmq","info":"CategoryCreatedEvent","data":{"id":"f8a97443-9aaa-4449-89c2-fd2cae4d091e","name":"category_ut","description":"Quos libero velit voluptatibus atque quo consequatur harum quia ut eveniet.","active":true,"updated_at":"2024-11-29T14:02:44.000000Z","created_at":"2024-11-29T14:02:44.000000Z"}}
+
+            {"app":"rabbitmq","info":"CategoryCreatedEvent","data":{"id":"f8a97443-9aaa-4449-89c2-fd2cae4d091e","name":"category_ut","description":"Quos libero velit voluptatibus atque quo consequatur harum quia ut eveniet.","active":true,"updated_at":"2024-11-29T14:02:44.000000Z","created_at":"2024-11-29T14:02:44.000000Z"}}
 
 Referências:
     
