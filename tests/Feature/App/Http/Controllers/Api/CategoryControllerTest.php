@@ -16,6 +16,7 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Event;
 use Symfony\Component\HttpFoundation\ParameterBag;
 use Tests\TestCase;
 
@@ -47,6 +48,8 @@ class CategoryControllerTest extends TestCase
 
     public function test_store()
     {
+        Event::fake();
+
         $useCase = new CreateCategoryUseCase($this->repository);
 
         $request = new StoreCategoryRequest();
@@ -63,6 +66,7 @@ class CategoryControllerTest extends TestCase
 
     public function test_show()
     {
+        Event::fake();
         $category = Category::factory()->create();
 
         $response = $this->controller->show(
@@ -76,6 +80,7 @@ class CategoryControllerTest extends TestCase
 
     public function test_update()
     {
+        Event::fake();
         $category = Category::factory()->create();
 
         $request = new UpdateCategoryRequest();
@@ -99,6 +104,7 @@ class CategoryControllerTest extends TestCase
 
     public function test_delete()
     {
+        Event::fake();
         $category = Category::factory()->create();
 
         $response = $this->controller->destroy(

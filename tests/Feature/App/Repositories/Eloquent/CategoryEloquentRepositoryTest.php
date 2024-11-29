@@ -8,6 +8,7 @@ use Core\Domain\Entity\Category as EntityCategory;
 use Core\Domain\Exception\NotFoundException;
 use Core\Domain\Repository\CategoryRepositoryInterface;
 use Core\Domain\Repository\PaginationInterface;
+use Illuminate\Support\Facades\Event;
 use Tests\TestCase;
 use Throwable;
 
@@ -18,7 +19,7 @@ class CategoryEloquentRepositoryTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
-
+        Event::fake();
         $this->repository = new CategoryEloquentRepository(new Model());
     }
 

@@ -3,6 +3,7 @@
 namespace Tests\Feature\Api;
 
 use App\Models\Category;
+use PHPUnit\Event\Event;
 use Symfony\Component\HttpFoundation\Response;
 use Tests\TestCase;
 use Tests\Traits\WithoutMiddlewareTrait;
@@ -23,6 +24,7 @@ class CategoryApiTest extends TestCase
 
     public function test_list_all_categories()
     {
+        \Illuminate\Support\Facades\Event::fake();
         Category::factory()->count(30)->create();
 
         $response = $this->getJson($this->endpoint);

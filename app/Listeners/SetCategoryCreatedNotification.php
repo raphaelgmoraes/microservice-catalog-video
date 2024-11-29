@@ -24,10 +24,6 @@ class SetCategoryCreatedNotification
     public function handle(CategoryCreatedEvent $event): void
     {
         try {
-//            $this->amqpInterface->producerFanout(
-//                $event->category->toArray(),
-//                config('microservices.rabbitmq.microservice_encoder_video.exchange')
-//            );
             $this->amqpInterface->producer(
                 config('microservices.rabbitmq.queue_name'),
                 [
