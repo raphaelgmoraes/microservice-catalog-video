@@ -15,7 +15,7 @@ class Category
         protected Uuid|string $id = '',
         protected string $name = '',
         protected string $description = '',
-        protected bool $isActive = true,
+        protected bool $active = true,
         protected DateTime|string $createdAt = '',
     ) {
         $this->id = empty($this->id) ? Uuid::random() : new Uuid($this->id);
@@ -26,12 +26,12 @@ class Category
 
     public function activate(): void
     {
-        $this->isActive = true;
+        $this->active = true;
     }
 
     public function disable(): void
     {
-        $this->isActive = false;
+        $this->active = false;
     }
 
     public function update(string $name, string $description = '')

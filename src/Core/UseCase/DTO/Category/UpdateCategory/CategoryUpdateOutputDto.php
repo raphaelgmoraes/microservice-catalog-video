@@ -8,14 +8,14 @@ class CategoryUpdateOutputDto
      * @param string $id
      * @param string $name
      * @param string $description
-     * @param bool $isActive
-     * @param string $createdAt
+     * @param bool $active
+     * @param string $created_at
      */
     public function __construct(
         public string $id,
         public string $name,
         public string $description = '',
-        public bool $isActive = true,
-        public string $createdAt = '',
+        public bool $active = true,
+        public string $created_at = '',
     ) {}
 }

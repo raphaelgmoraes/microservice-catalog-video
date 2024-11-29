@@ -18,12 +18,12 @@ class CategoryUnitTest extends TestCase
         $category = new Category(
             name: self::CATEGORY_NAME,
             description: self::NOTES,
-            isActive: true
+            active: true
         );
         $this->assertNotEmpty($category->id());
         $this->assertEquals(self::CATEGORY_NAME, $category->name);
         $this->assertEquals(self::NOTES, $category->description);
-        $this->assertEquals(true, $category->isActive);
+        $this->assertEquals(true, $category->active);
         $this->assertNotEmpty($category->createdAt());
     }
 
@@ -31,12 +31,12 @@ class CategoryUnitTest extends TestCase
     {
         $category = new Category(
             name: self::CATEGORY_NAME,
-            isActive: false,
+            active: false,
         );
 
-        $this->assertFalse($category->isActive);
+        $this->assertFalse($category->active);
         $category->activate();
-        $this->assertTrue($category->isActive);
+        $this->assertTrue($category->active);
     }
 
     public function test_disabled()
@@ -45,9 +45,9 @@ class CategoryUnitTest extends TestCase
             name: self::CATEGORY_NAME,
         );
 
-        $this->assertTrue($category->isActive);
+        $this->assertTrue($category->active);
         $category->disable();
-        $this->assertFalse($category->isActive);
+        $this->assertFalse($category->active);
     }
 
     public function test_update()
@@ -57,7 +57,7 @@ class CategoryUnitTest extends TestCase
             id: $uuid,
             name: self::CATEGORY_NAME,
             description: self::NOTES,
-            isActive: true,
+            active: true,
             createdAt: date('Y-m-d H:i:s')
         );
 

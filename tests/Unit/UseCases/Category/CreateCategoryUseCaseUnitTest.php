@@ -10,7 +10,7 @@ use Core\UseCase\DTO\Category\CreateCategory\CategoryCreateOutputDto;
 use Mockery;
 use PHPUnit\Framework\TestCase;
 use Ramsey\Uuid\Uuid;
-use src\Core\Domain\Repository\CategoryRepositoryInterface;
+use Core\Domain\Repository\CategoryRepositoryInterface;
 use stdClass;
 
 #[AllowDynamicProperties] class CreateCategoryUseCaseUnitTest extends TestCase

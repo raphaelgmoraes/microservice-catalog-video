@@ -14,7 +14,8 @@ interface CategoryRepositoryInterface
     public function paginate(
         string $filter = '',
         string $sort = 'DESC',
-        int $page = 1, $totalPage = 15
+        int $page = 1,
+        int $totalPage = 15
     ): PaginationInterface;
 
 }

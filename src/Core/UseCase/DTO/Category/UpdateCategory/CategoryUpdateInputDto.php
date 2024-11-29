@@ -8,12 +8,12 @@ class CategoryUpdateInputDto
      * @param string $id
      * @param string $name
      * @param string|null $description
-     * @param bool $isActive
+     * @param bool $active
      */
     public function __construct(
         public string $id,
         public string $name,
         public string|null $description = null,
-        public bool $isActive = true,
+        public bool $active = true,
     ) {}
 }

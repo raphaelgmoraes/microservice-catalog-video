@@ -30,8 +30,8 @@ class ListCategoryUseCase
             id: $category->id(),
             name: $category->name,
             description: $category->description,
-            isActive: $category->isActive,
-            createdAt: $category->createdAt(),
+            active: $category->active,
+            created_at: $category->createdAt(),
         );
     }
 }

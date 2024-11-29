@@ -7,11 +7,11 @@ class CategoryCreateInputDto
     /**
      * @param string $name
      * @param string $description
-     * @param bool $isActive
+     * @param bool $active
      */
     public function __construct(
         public string $name,
         public string $description = '',
-        public bool $isActive = true,
+        public bool $active = true,
     ) {}
 }

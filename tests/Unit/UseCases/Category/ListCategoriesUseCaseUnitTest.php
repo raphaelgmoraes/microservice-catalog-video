@@ -45,7 +45,7 @@ use stdClass;
         $register->id = 'id';
         $register->name = 'name';
         $register->description = 'description';
-        $register->isActive = 'isActive';
+        $register->active = 'active';
         $register->created_at = 'created_at';
         $register->updated_at = 'created_at';
         $register->deleted_at = 'created_at';
