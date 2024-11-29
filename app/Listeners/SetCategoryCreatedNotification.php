@@ -6,6 +6,7 @@ use App\Events\CategoryCreatedEvent;
 use App\Services\AMQP\AMQPInterface;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
+use Illuminate\Support\Facades\Log;
 
 class SetCategoryCreatedNotification
 {
@@ -22,9 +23,26 @@ class SetCategoryCreatedNotification
      */
     public function handle(CategoryCreatedEvent $event): void
     {
-        $this->amqpInterface->producerFanout(
-            $event->category->toArray(),
-            config('microservices.rabbitmq.microservice_encoder_video.exchange')
-        );
+        try {
+//            $this->amqpInterface->producerFanout(
+//                $event->category->toArray(),
+//                config('microservices.rabbitmq.microservice_encoder_video.exchange')
+//            );
+            $this->amqpInterface->producer(
+                config('microservices.rabbitmq.queue_name'),
+                [
+                    'app' => 'rabbitmq',
+                    'info' => 'CategoryCreatedEvent',
+                    'data' => $event->category->toArray(),
+                ],
+                config('microservices.rabbitmq.microservice_encoder_video.exchange')
+            );
+        } catch (\Exception $exception) {
+            Log::error(
+                "Class: " . get_class($this)
+                . "Message Exception: " .$exception->getMessage()
+            );
+            report($exception);
+        }
     }
 }

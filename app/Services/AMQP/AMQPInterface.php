@@ -24,8 +24,8 @@ interface AMQPInterface
     /**
      * @param string $queue
      * @param string $exchange
-     * @param Closure|null $callback
+     * @param Closure $callback
      * @return void
      */
-    public function consumer(string $queue, string $exchange, Closure $callback = null): void;
+    public function consumer(string $queue, string $exchange, Closure $callback): void;
 }

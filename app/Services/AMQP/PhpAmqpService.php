@@ -51,7 +51,7 @@ class PhpAmqpService implements AMQPInterface
         $this->closeConnection();
     }
 
-    public function consumer(string $queue, string $exchange, Closure $callback = null): void
+    public function consumer(string $queue, string $exchange, Closure $callback): void
     {
         $this->connect();
 
@@ -68,13 +68,8 @@ class PhpAmqpService implements AMQPInterface
         );
 
         $this->channel->basic_consume(
-            $queue,
-            '',
-            false,
-            true,
-            false,
-            false,
-            $callback
+            queue: $queue,
+            callback: $callback
         );
 
         while ($this->channel->is_consuming()) {
@@ -85,6 +80,9 @@ class PhpAmqpService implements AMQPInterface
         $this->closeConnection();
     }
 
+    /**
+     * @throws \Exception
+     */
     private function connect(): void
     {
         if ($this->connection) {

@@ -15,14 +15,14 @@ class RabbitmqConsumer extends Command
      *
      * @var string
      */
-    protected $signature = 'app:rabbitmq-producer';
+    protected $signature = 'app:rabbitmq-consumer';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'RabbitMQ producer description';
+    protected $description = 'RabbitMQ consumer description';
 
     public function __construct(public AMQPInterface $amqp)
     {
@@ -34,41 +34,33 @@ class RabbitmqConsumer extends Command
      */
     public function handle()
     {
-        $category = Category::factory()->create();
-        event(new CategoryCreatedEvent($category));
-
-//        $this->amqp->consumer(
-//            queue: config('microservices.queue_name'),
-//            exchange: config('microservices.micro_encoder_go.exchange_producer'),
-//        );
-
-
-        $connection = new AMQPStreamConnection('localhost', 5672, 'guest', 'guest');
-        $channel = $connection->channel();
-
-        $channel->exchange_declare('logs', 'fanout', false, false, false);
-
-        list($queue_name, ,) = $channel->queue_declare("", false, false, true, false);
-
-        $channel->queue_bind($queue_name, 'logs');
-
-        echo " [*] Waiting for logs. To exit press CTRL+C\n";
-
         $callback = function ($msg) {
-            echo ' [x] ', $msg->getBody(), "\n";
+            echo ' [x] Received ', $msg->getBody(), "\n";
         };
 
-        $channel->basic_consume($queue_name, '', false, true, false, false, $callback);
-
-        try {
-            $channel->consume();
-        } catch (\Throwable $exception) {
-            echo $exception->getMessage();
-        }
-
-        $channel->close();
-        $connection->close();
-
+        $this->amqp->consumer(
+            queue: config('microservices.rabbitmq.queue_name'),
+            exchange: config('microservices.rabbitmq.microservice_encoder_video.exchange_producer'),
+            callback: $callback
+        );
         return 0;
     }
+
+    /**
+     * @param \PhpAmqpLib\Message\AMQPMessage $message
+     */
+    function process_message($message)
+    {
+        echo "\n--------\n";
+        echo $message->body;
+        echo "\n--------\n";
+
+        $message->ack();
+
+        // Send a message with the string "quit" to cancel the consumer.
+        if ($message->body === 'quit') {
+            $message->getChannel()->basic_cancel($message->getConsumerTag());
+        }
+    }
+
 }
