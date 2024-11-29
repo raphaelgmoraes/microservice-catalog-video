@@ -3,6 +3,7 @@
 namespace Core\UseCase\Category;
 
 use Core\Domain\Entity\Category;
+use Core\Domain\Events\CategoryCreatedEvent;
 use Core\UseCase\DTO\Category\CreateCategory\CategoryCreateInputDto;
 use Core\UseCase\DTO\Category\CreateCategory\CategoryCreateOutputDto;
 use Core\Domain\Repository\CategoryRepositoryInterface;

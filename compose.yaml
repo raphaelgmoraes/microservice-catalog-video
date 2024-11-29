@@ -2,6 +2,7 @@ volumes:
   app:
   db:
   cache:
+  rabbitmq:
 
 services:
   app:
@@ -71,6 +72,21 @@ services:
       PHP_POOL_NAME: horizon
     command: ["php", "/var/www/html/artisan", "schedule:work"]
     restart: unless-stopped
+
+  rabbitmq:
+    image: rabbitmq:3-management
+    container_name: "rabbitmq"
+    environment:
+      RABBITMQ_ERLANG_COOKIE: ${RABBITMQ_ERLANG_COOKIE} # GARANTE o serviço rodando, entre outras coisas
+      RABBITMQ_DEFAULT_USER: ${RABBITMQ_USER}
+      RABBITMQ_DEFAULT_PASS: ${RABBITMQ_PASSWORD}
+      RABBITMQ_DEFAULT_VHOST: ${RABBITMQ_DEFAULT_VHOST}
+    ports:
+      - ${RABBITMQ_PORT_WEB}:15672 # interface web
+      - ${RABBITMQ_PORT_INTERNAL}:5672 # connect port applications
+    volumes:
+      - ~/.docker-conf/rabbitmq/data/:/var/lib/rabbitmq/
+      - ~/.docker-conf/rabbitmq/log/:/var/log/rabbitmq
 
 networks:
   app-bridge:

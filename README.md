@@ -94,20 +94,68 @@ Sistema básico com Laravel e TDD
             °Category;
 Entidade(Domain)
     Category
+    
+    
+Rotas:
+
+----------------------------------------
+[All list]
+GET > http://localhost/api/categories
+
+[ById]
+GET > http://localhost/api/categories/72f2d33c-be02-481a-b3a2-7052d39c444e
+----------------------------------------
+POST < http://localhost/api/categories
+BODY {"name": "new_category_1"}
+
+RESPONSE:
+{
+    "data": {
+        "id": "7926c8e6-c8a5-4ec4-97b7-39a0d970f8e3",
+        "name": "new_category_1",
+        "description": "",
+        "is_active": false,
+        "created_at": "2024-11-28 23:40:16"
+    }
+}
+----------------------------------------
+PUT|PATCH 
+----------------------------------------
+
 ```
 
 2° Etapa: Mensageria
 
 ```
-RabbitMQ - Conversões de video
+
+RabbitMQ
+
 A idéia é simular um processo de conversão de vídeos, reduzindo resursos do sistema.
-Em andamento
+Informar que a categoria foi criada e tormar ações sobre.
+
+***Em andamento
+
+Outros exemplos possíveis: 
+ - Encoder videos
+ - Processamento reviews
+ - Informações de asssinaturas, notas fiscais, notificações usuários, etc ...
+
+Reference:
+https://github.com/php-amqplib/php-amqplib
+https://www.rabbitmq.com/tutorials/tutorial-one-php
+Simulator: https://tryrabbitmq.com/
+
 
 Kafka - Replicador de Dados
-Em andamento'
+***Em andamento'
 
 ```
 ```
 3° Observabilidade (ElasticSearch)
-Em andamento
+***Em andamento
+```
+
+```
+Continuos Integrations - Github actions
+
 ```

@@ -15,6 +15,7 @@ use Core\UseCase\DTO\Category\CategoryInputDto;
 use Core\UseCase\DTO\Category\CreateCategory\CategoryCreateInputDto;
 use Core\UseCase\DTO\Category\ListCategory\ListCategoriesInputDto;
 use Core\UseCase\DTO\Category\UpdateCategory\CategoryUpdateInputDto;
+use Core\UseCase\Category\Interfaces\CategoryEventManagerInterface;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
@@ -68,8 +69,7 @@ class CategoryController extends Controller
         );
 
         return (new CategoryResource($response))
-                    ->response()
-                    ->setStatusCode(Response::HTTP_CREATED);
+            ->response()->setStatusCode(Response::HTTP_CREATED);
     }
 
     public function show(ListCategoryUseCase $useCase, $id)
