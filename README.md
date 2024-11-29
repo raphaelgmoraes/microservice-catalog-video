@@ -1,4 +1,4 @@
-Atlas Tecnologies 2024
+Atlas Technologies 2024
 
 Microservice de Catalogo de videos - básico para apresentação
 
