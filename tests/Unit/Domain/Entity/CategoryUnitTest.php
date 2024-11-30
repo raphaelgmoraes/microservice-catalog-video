@@ -11,6 +11,7 @@ use Throwable;
 class CategoryUnitTest extends TestCase
 {
     protected const CATEGORY_NAME = 'category_name';
+
     protected const NOTES = 'notes';
 
     public function test_attributes()
@@ -85,7 +86,7 @@ class CategoryUnitTest extends TestCase
         }
     }
 
-    public function testExceptionDescription()
+    public function test_exception_description()
     {
         try {
             new Category(

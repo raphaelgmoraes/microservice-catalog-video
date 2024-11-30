@@ -45,7 +45,7 @@ class DomainValidationUnitTest extends TestCase
         }
     }
 
-    public function testStr_min_length()
+    public function test_str_min_length()
     {
         try {
             $value = 'Test';

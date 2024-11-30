@@ -10,5 +10,6 @@ class CategoryUpdateOutputDto
         public string $description = '',
         public bool $active = true,
         public string $created_at = '',
-    ) {}
+    ) {
+    }
 }

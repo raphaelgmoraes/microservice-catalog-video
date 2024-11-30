@@ -13,5 +13,6 @@ class ListCategoriesOutputDto
         public int $perPage,
         public int $to,
         public int $from,
-    ) {}
+    ) {
+    }
 }

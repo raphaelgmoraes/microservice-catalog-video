@@ -15,7 +15,6 @@ use Core\UseCase\DTO\Category\CategoryInputDto;
 use Core\UseCase\DTO\Category\CreateCategory\CategoryCreateInputDto;
 use Core\UseCase\DTO\Category\ListCategory\ListCategoriesInputDto;
 use Core\UseCase\DTO\Category\UpdateCategory\CategoryUpdateInputDto;
-use Core\UseCase\Category\Interfaces\CategoryEventManagerInterface;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
@@ -23,11 +22,6 @@ use Illuminate\Http\Response;
 
 class CategoryController extends Controller
 {
-    /**
-     * @param Request $request
-     * @param ListCategoriesUseCase $useCase
-     * @return AnonymousResourceCollection
-     */
     public function index(Request $request, ListCategoriesUseCase $useCase): AnonymousResourceCollection
     {
         $response = $useCase->execute(
@@ -40,24 +34,19 @@ class CategoryController extends Controller
         );
 
         return CategoryResource::collection(collect($response->items))
-                                    ->additional([
-                                        'meta' => [
-                                            'total' => $response->total,
-                                            'current_page' => $response->currentPage,
-                                            'last_page' => $response->lastPage,
-                                            'first_page' => $response->firstPage,
-                                            'per_page' => $response->perPage,
-                                            'to' => $response->to,
-                                            'from' => $response->from,
-                                        ],
-                                    ]);
+            ->additional([
+                'meta' => [
+                    'total' => $response->total,
+                    'current_page' => $response->currentPage,
+                    'last_page' => $response->lastPage,
+                    'first_page' => $response->firstPage,
+                    'per_page' => $response->perPage,
+                    'to' => $response->to,
+                    'from' => $response->from,
+                ],
+            ]);
     }
 
-    /**
-     * @param StoreCategoryRequest $request
-     * @param CreateCategoryUseCase $useCase
-     * @return JsonResponse
-     */
     public function store(StoreCategoryRequest $request, CreateCategoryUseCase $useCase): JsonResponse
     {
         $response = $useCase->execute(

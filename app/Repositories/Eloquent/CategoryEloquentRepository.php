@@ -33,7 +33,7 @@ class CategoryEloquentRepository implements CategoryRepositoryInterface
 
     public function findById(string $categoryId): Category
     {
-        if (!$category = $this->model->find($categoryId)) {
+        if (! $category = $this->model->find($categoryId)) {
             throw new NotFoundException('Category Not Found');
         }
 
@@ -43,21 +43,21 @@ class CategoryEloquentRepository implements CategoryRepositoryInterface
     public function getIdsListIds(array $categoriesId = []): array
     {
         return $this->model
-                    ->whereIn('id', $categoriesId)
-                    ->pluck('id')
-                    ->toArray();
+            ->whereIn('id', $categoriesId)
+            ->pluck('id')
+            ->toArray();
     }
 
     public function findAll(string $filter = '', $sort = 'DESC'): array
     {
         $categories = $this->model
-                            ->where(function ($query) use ($filter) {
-                                if ($filter) {
-                                    $query->where('name', 'LIKE', "%{$filter}%");
-                                }
-                            })
-                            ->orderBy('id', $sort)
-                            ->get();
+            ->where(function ($query) use ($filter) {
+                if ($filter) {
+                    $query->where('name', 'LIKE', "%{$filter}%");
+                }
+            })
+            ->orderBy('id', $sort)
+            ->get();
 
         return $categories->toArray();
     }

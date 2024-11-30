@@ -6,7 +6,9 @@ use Core\Domain\Entity\Category;
 
 class CategoryCreatedEvent implements EventInterface
 {
-    public function __construct(protected Category $category) {}
+    public function __construct(protected Category $category)
+    {
+    }
 
     public function getEventName(): string
     {

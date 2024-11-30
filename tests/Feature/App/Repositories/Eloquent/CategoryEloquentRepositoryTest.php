@@ -33,8 +33,9 @@ class CategoryEloquentRepositoryTest extends TestCase
             'name' => $entity->name,
         ]);
     }
-//
-    public function testFindById()
+
+    //
+    public function test_find_by_id()
     {
         $category = Model::factory()->create();
         $response = $this->repository->findById($category->id);
@@ -43,7 +44,7 @@ class CategoryEloquentRepositoryTest extends TestCase
         $this->assertEquals($category->id, $response->id());
     }
 
-    public function testFindByIdNotFound()
+    public function test_find_by_id_not_found()
     {
         try {
             $this->repository->findById('fakeValue');
@@ -54,7 +55,7 @@ class CategoryEloquentRepositoryTest extends TestCase
         }
     }
 
-    public function testFindAll()
+    public function test_find_all()
     {
         $categories = Model::factory()->count(50)->create();
 
@@ -63,7 +64,7 @@ class CategoryEloquentRepositoryTest extends TestCase
         $this->assertEquals(count($categories), count($response));
     }
 
-    public function testPaginate()
+    public function test_paginate()
     {
         Model::factory()->count(20)->create();
 
@@ -73,7 +74,7 @@ class CategoryEloquentRepositoryTest extends TestCase
         $this->assertCount(15, $response->items());
     }
 
-    public function testPaginateWithout()
+    public function test_paginate_without()
     {
         $response = $this->repository->paginate();
 
@@ -81,7 +82,7 @@ class CategoryEloquentRepositoryTest extends TestCase
         $this->assertCount(0, $response->items());
     }
 
-    public function testUpdateIdNotFound()
+    public function test_update_id_not_found()
     {
         try {
             $category = new EntityCategory(name: 'test');
@@ -93,7 +94,7 @@ class CategoryEloquentRepositoryTest extends TestCase
         }
     }
 
-    public function testUpdate()
+    public function test_update()
     {
         $categoryDb = Model::factory()->create();
 
@@ -108,7 +109,7 @@ class CategoryEloquentRepositoryTest extends TestCase
         $this->assertEquals('updated name', $response->name);
     }
 
-    public function testDeleteIdNotFound()
+    public function test_delete_id_not_found()
     {
         try {
             $this->repository->delete('fake_id');
@@ -119,7 +120,7 @@ class CategoryEloquentRepositoryTest extends TestCase
         }
     }
 
-    public function testDelete()
+    public function test_delete()
     {
         $category = Model::factory()->create();
 

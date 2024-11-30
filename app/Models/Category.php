@@ -11,15 +11,18 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 #[ObservedBy([CategoryObserver::class])]
 class Category extends Model
 {
-    use HasFactory, SoftDeletes;
+    use HasFactory;
+    use SoftDeletes;
 
     public $incrementing = false;
+
     protected $fillable = [
         'id',
         'name',
         'description',
-        'active'
+        'active',
     ];
+
     protected $casts = [
         'id' => 'string',
         'active' => 'boolean',

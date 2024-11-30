@@ -8,5 +8,6 @@ class CategoryCreateInputDto
         public string $name,
         public string $description = '',
         public bool $active = true,
-    ) {}
+    ) {
+    }
 }

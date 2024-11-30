@@ -68,7 +68,7 @@ class PaginationPresenter implements PaginationInterface
         $response = [];
 
         foreach ($items as $item) {
-            $stdClass = new stdClass;
+            $stdClass = new stdClass();
             foreach ($item->toArray() as $key => $value) {
                 $stdClass->{$key} = $value;
             }

@@ -13,6 +13,7 @@ class TestClassUnitTest extends TestCase
         $response = $class->foo();
         $this->assertEquals('foo', $response);
     }
+
     public function test_call_method_bar()
     {
         $class = new TestClass();

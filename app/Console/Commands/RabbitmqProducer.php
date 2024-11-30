@@ -36,7 +36,6 @@ class RabbitmqProducer extends Command
         $category = Category::factory()->create();
         event(new CategoryCreatedEvent($category));
 
-
         return 0;
     }
 }

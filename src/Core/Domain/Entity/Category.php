@@ -19,7 +19,7 @@ class Category
         protected DateTime|string $createdAt = '',
     ) {
         $this->id = empty($this->id) ? Uuid::random() : new Uuid($this->id);
-        $this->createdAt = empty($this->createdAt) ? new DateTime : new DateTime($this->createdAt);
+        $this->createdAt = empty($this->createdAt) ? new DateTime() : new DateTime($this->createdAt);
 
         $this->validate();
     }

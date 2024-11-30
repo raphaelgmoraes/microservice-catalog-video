@@ -2,11 +2,8 @@
 
 namespace App\Console\Commands;
 
-use App\Events\CategoryCreatedEvent;
-use App\Models\Category;
 use App\Services\AMQP\AMQPInterface;
 use Illuminate\Console\Command;
-use PhpAmqpLib\Connection\AMQPStreamConnection;
 
 class RabbitmqConsumer extends Command
 {
@@ -43,13 +40,14 @@ class RabbitmqConsumer extends Command
             exchange: config('microservices.rabbitmq.microservice_encoder_video.exchange_producer'),
             callback: $callback
         );
+
         return 0;
     }
 
     /**
-     * @param \PhpAmqpLib\Message\AMQPMessage $message
+     * @param  \PhpAmqpLib\Message\AMQPMessage  $message
      */
-    function process_message($message)
+    public function process_message($message)
     {
         echo "\n--------\n";
         echo $message->body;
@@ -62,5 +60,4 @@ class RabbitmqConsumer extends Command
             $message->getChannel()->basic_cancel($message->getConsumerTag());
         }
     }
-
 }

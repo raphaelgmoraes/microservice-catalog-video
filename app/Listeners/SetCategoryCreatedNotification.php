@@ -4,8 +4,6 @@ namespace App\Listeners;
 
 use App\Events\CategoryCreatedEvent;
 use App\Services\AMQP\AMQPInterface;
-use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Support\Facades\Log;
 
 class SetCategoryCreatedNotification
@@ -15,7 +13,7 @@ class SetCategoryCreatedNotification
      */
     public function __construct(public AMQPInterface $amqpInterface)
     {
-       //
+        //
     }
 
     /**
@@ -35,8 +33,8 @@ class SetCategoryCreatedNotification
             );
         } catch (\Exception $exception) {
             Log::error(
-                "Class: " . get_class($this)
-                . "Message Exception: " .$exception->getMessage()
+                'Class: '.get_class($this)
+                .'Message Exception: '.$exception->getMessage()
             );
             report($exception);
         }

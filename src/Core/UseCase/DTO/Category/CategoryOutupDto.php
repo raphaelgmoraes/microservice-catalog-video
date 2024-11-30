@@ -10,5 +10,6 @@ class CategoryOutupDto
         public string $description = '',
         public bool $active = true,
         public string $created_at = '',
-    ) {}
+    ) {
+    }
 }

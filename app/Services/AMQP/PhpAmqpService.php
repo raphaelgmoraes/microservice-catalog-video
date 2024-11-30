@@ -7,7 +7,6 @@ use PhpAmqpLib\Connection\AMQPStreamConnection;
 use PhpAmqpLib\Exchange\AMQPExchangeType;
 use PhpAmqpLib\Message\AMQPMessage;
 
-
 class PhpAmqpService implements AMQPInterface
 {
     protected $connection = null;
