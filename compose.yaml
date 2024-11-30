@@ -12,6 +12,11 @@ services:
         # UID and GID must be set as environment variables on the host machine
         USER_ID: $DOCKER_USER_ID
         GROUP_ID: $DOCKER_GROUP_ID
+    environment:
+      AUTORUN_ENABLED: true
+      AUTORUN_LARAVEL_MIGRATION_ISOLATION: true
+      PHP_OPCACHE_ENABLE: 0
+
     ports:
       - ${DOCKER_HTTP_PORT}:8080
       - ${DOCKER_HTTPS_PORT}:8443
