@@ -3,27 +3,19 @@
 namespace Core\UseCase\Category;
 
 use Core\Domain\Entity\Category;
-use Core\Domain\Events\CategoryCreatedEvent;
+use Core\Domain\Repository\CategoryRepositoryInterface;
 use Core\UseCase\DTO\Category\CreateCategory\CategoryCreateInputDto;
 use Core\UseCase\DTO\Category\CreateCategory\CategoryCreateOutputDto;
-use Core\Domain\Repository\CategoryRepositoryInterface;
 
 class CreateCategoryUseCase
 {
     protected CategoryRepositoryInterface $repository;
 
-    /**
-     * @param CategoryRepositoryInterface $repository
-     */
     public function __construct(CategoryRepositoryInterface $repository)
     {
         $this->repository = $repository;
     }
 
-    /**
-     * @param CategoryCreateInputDto $input
-     * @return CategoryCreateOutputDto
-     */
     public function execute(CategoryCreateInputDto $input): CategoryCreateOutputDto
     {
         $category = new Category(

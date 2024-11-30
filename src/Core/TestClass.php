@@ -1,6 +1,7 @@
 <?php
 
 namespace Core;
+
 class TestClass
 {
     public function foo()

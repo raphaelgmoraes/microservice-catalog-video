@@ -10,18 +10,11 @@ class UpdateCategoryUseCase
 {
     protected CategoryRepositoryInterface $repository;
 
-    /**
-     * @param CategoryRepositoryInterface $repository
-     */
     public function __construct(CategoryRepositoryInterface $repository)
     {
         $this->repository = $repository;
     }
 
-    /**
-     * @param CategoryUpdateInputDto $input
-     * @return CategoryUpdateOutputDto
-     */
     public function execute(CategoryUpdateInputDto $input): CategoryUpdateOutputDto
     {
         $category = $this->repository->findById($input->id);

@@ -10,18 +10,11 @@ class ListCategoryUseCase
 {
     protected CategoryRepositoryInterface $repository;
 
-    /**
-     * @param CategoryRepositoryInterface $repository
-     */
     public function __construct(CategoryRepositoryInterface $repository)
     {
         $this->repository = $repository;
     }
 
-    /**
-     * @param CategoryInputDto $input
-     * @return CategoryOutupDto
-     */
     public function execute(CategoryInputDto $input): CategoryOutupDto
     {
         $category = $this->repository->findById($input->id);

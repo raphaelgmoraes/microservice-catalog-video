@@ -10,18 +10,11 @@ class ListCategoriesUseCase
 {
     protected CategoryRepositoryInterface $repository;
 
-    /**
-     * @param CategoryRepositoryInterface $repository
-     */
     public function __construct(CategoryRepositoryInterface $repository)
     {
         $this->repository = $repository;
     }
 
-    /**
-     * @param ListCategoriesInputDto $input
-     * @return ListCategoriesOutputDto
-     */
     public function execute(ListCategoriesInputDto $input): ListCategoriesOutputDto
     {
         $categories = $this->repository->paginate(

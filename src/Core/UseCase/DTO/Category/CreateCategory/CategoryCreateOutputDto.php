@@ -4,13 +4,6 @@ namespace Core\UseCase\DTO\Category\CreateCategory;
 
 class CategoryCreateOutputDto
 {
-    /**
-     * @param string $id
-     * @param string $name
-     * @param string $description
-     * @param bool $active
-     * @param string $created_at
-     */
     public function __construct(
         public string $id,
         public string $name,
