@@ -1,13 +1,12 @@
 ############################################
 # Base Image
 ############################################
-FROM serversideup/php:8.3-fpm-nginx AS base
+FROM serversideup/php:8.4-fpm-nginx
 
 USER root
-RUN install-php-extensions intl
-RUN install-php-extensions bcmath
-USER www-data
-
+# Reference: https://github.com/mlocati/docker-php-extension-installer
+RUN install-php-extensions @composer gd xdebug intl bcmath sockets
+COPY --chmod=755 ./entrypoint.d/ /etc/entrypoint.d/
 # Switch to root so we can do root things
 USER root
 
