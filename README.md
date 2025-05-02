@@ -1,6 +1,4 @@
-Atlas Technologies 2024
-
-Microservice de Catalogo de videos - básico para apresentação
+Microservice de Catalogo de videos
 
 O Objetivo foi pegar as partes descritas na vaga para exemplificar um caso de uso simples, podendo abordar vários cenários.
 
